@@ -12,4 +12,4 @@ int main()
     string ans = n1 + n2;
     cout <<  ans << endl;
 
-}
+};
