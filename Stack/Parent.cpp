@@ -2,11 +2,12 @@
 #include <stack>
 using namespace std;
 
+// Balanced Paranthesis problem solution using stack DS
 bool isParenthesisBalanced(string exp)
 {
     stack<char> myStc;
     char pr;
-    for( int i = 0; i <exp.length() ; ++i ){
+    for(int i = 0; i <exp.length() ; ++i){
         if(exp[i] == '(' || exp[i] == '{' || exp[i] == '['){
             myStc.push(exp[i]);
         }
@@ -37,8 +38,8 @@ bool isParenthesisBalanced(string exp)
 }
 int main()
 {
-    string expr = "[{}(){()}]";
-    if(isParenthesisBalanced(expr))
+    string exp = "[{}(){()}(){}()]";
+    if(isParenthesisBalanced(exp))
     {
         cout << "Parenthesis is balanced!" << endl;
     }else{
