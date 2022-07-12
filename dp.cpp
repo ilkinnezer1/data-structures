@@ -2,7 +2,7 @@
 #include <unordered_map>
 using namespace std;
 
-int gridTravel(int m, int n, unordered_map<string, int>&hash){
+int gridTravel(int m, int n, unordered_map<string>, int>&hash){
     //defining key
     string key = to_string(m) + " | " + to_string(n);
     if(hash.find(key) == hash.end()){
