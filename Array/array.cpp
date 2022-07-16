@@ -30,7 +30,7 @@ public:
     int get(int index);
     int max();
     int min();
-    void set(int index, int x);
+    void set(int index, int data);
     int sum();
     float avg();
     void reverse();
@@ -60,7 +60,7 @@ void Array:: append(int data){
         A[length++] = data;
     }
 }
-void Array:: insert(int index){
+void Array:: insert(int index, int data){
     if(index >= 0 && index <= length){
         for(int i = length; i > index; --i){
             A[i] = A[i-1];
@@ -79,32 +79,32 @@ int Array::get(int index)
 
 int Array:: max()
 {
-    int max = arr.A[0];
+    int max =A[0] ;
     int i;
 
-    for ( int i = 1; i < arr.length; i++)
-        if(arr.A[i] > max)
-            max = arr.A[i];
+    for ( int i = 1; i < length; i++)
+        if(A[i] > max)
+            max = A[i];
     return max;
 }
 
 int Array:: min(){
-    int min = arr.A[0];
+    int min = A[0];
     int i;
 
-for ( int i = 1; i < arr.length; i++)
+for ( int i = 1; i < length; i++)
     {
-        if(arr.A[i] < min){
-            min = arr.A[i];
+        if(A[i] < min){
+            min = A[i];
         }
     }
     return min;
 }
 
-void Array:: set(){
-    if(index >= 0 && index < arr->length)
+void Array:: set(int index, int data){
+    if(index >= 0 && index < length)
     {
-        arr->A[index] = x;
+        A[index] = data;
     }
 }
 
@@ -112,8 +112,8 @@ int Array:: sum()
 {
     int i;
     int sum;
-    for(i = 0; i <arr.length; ++i){
-        sum += arr.A[i];
+    for(i = 0; i < length; ++i){
+        sum += A[i];
     }
     return sum;
 }
@@ -145,39 +145,39 @@ int Array::binarySearch(int key)
 }
 
 float Array::avg(){
-   return (float)sum(arr)/ arr.length;
+   return (float)sum()/length;
 }
 
-void Array:: reverse(struct Array *arr){
+void Array:: reverse(){
     int *P, i,j;
-    P = (int*)malloc(arr->length * sizeof(int));
-    for(i=arr->length - 1, j=0; i >=0; i--,j++){
-        P[j] = arr->A[i];
+    P = (int*)malloc(length * sizeof(int));
+    for(i=length - 1, j=0; i >=0; i--,j++){
+        P[j] = A[i];
     }
-    for(i =0; i < arr->length; i++){
-        arr->A[i] = P[i];
+    for(i =0; i < length; i++){
+        A[i] = P[i];
     }
 
 }
 
 void Array:: reArrange(){
-    int i=0, j=arr->length - 1;
+    int i=0, j=length - 1;
     while(i<j){
-        while(arr->A[i] < 0) // for negative value
+        while(A[i] < 0) // for negative value
             i++;
-        while(arr->A[i] >= 0) j--;
+        while(A[i] >= 0) j--;
 
         if(i < j){
-            swap(&arr->A[i], &arr->A[j]);
+            swap(&A[i], &A[j]);
         }
     }
 }
 int Array::isSorted()
 {
 
-    for(int i =0 ; i < arr.length -1; i++)
+    for(int i =0 ; i < length -1; i++)
     {
-        if(arr.A[i] > arr.A[i+1])
+        if(A[i] > A[i+1])
             return 0;
     }
     return 1;
@@ -187,52 +187,53 @@ int Array::isSorted()
 void Array:: reverse2(){
     int i,j;
 
-    for(i = 0, j=arr->length-1; i<j; i++, j--)
+    for(i = 0, j=length-1; i<j; i++, j--)
     {
-        swap(&arr->A[i], &arr->A[j]);
+        swap(&A[i], &A[j]);
     }
 }
 
 
 void Array:: insertionSortedArray(int data)
 {
-    int i = arr->length-1;
-    if(arr->length == arr->size) return; // no free space
+    int i =length-1;
+    if(length == size) return; // no free space
 
-    while(i>= 0 && arr->A[i] > data)
+    while(i>= 0 && A[i] > data)
     {
-        arr->A[i+1] = arr->A[i];
+        A[i+1] = A[i];
         i--;
     }
-    arr->A[i+1] = data;
-    arr->length++;
+    A[i+1] = data;
+    length++;
 
 }
 
-Array* Array ::mergeArray(Array arr2)
-        {    int i,j,k;    i=j=k=0;
-            Array *arr3=(struct Array *)malloc(sizeof(struct Array));
-            while(i<arr1->length && j<arr2->length)    {
-                if(arr1->A[i]<arr2->A[j])
-                    arr3->A[k++]=arr1->A[i++];
+Array* Array::mergeArray(Array arr2)
+        {    int i,j,k; 
+            i=j=k=0;
+           Array *arr3=new Array(length + arr2.length);
+            while(i<length && j<arr2.length){
+                if(A[i]<arr2.A[j])
+                    arr3->A[k++]=A[i++];
                 else
-                    arr3->A[k++]=arr2->A[j++];
-            }    for(;i<arr1->length;i++)
-                arr3->A[k++]=arr1->A[i];
-            for(;j<arr2->length;j++)
-                arr3->A[k++]=arr2->A[j];
-            arr3->length=arr1->length+arr2->length;
+                    arr3->A[k++]=arr2.A[j++];
+            }    for(;i<length;i++)
+                arr3->A[k++]=A[i];
+            for(;j<arr2.length;j++)
+                arr3->A[k++]=arr2.A[j];
+            arr3->length=length+arr2.length;
             arr3->size=14;
             return arr3;
         }
 
 int Array:: deleteElement(int index){
     int x=0, i;
-    if(index >= 0 && index < arr->length){
-        x = arr->A[index];
-        for(i=index; i < arr->length - 1; ++i)
-            arr->A[i] = arr->A[i+1]; // shifting
-        arr->length--;
+    if(index >= 0 && index < length){
+        x = A[index];
+        for(i=index; i < length - 1; ++i)
+            A[i] = A[i+1]; // shifting
+        length--;
 
       return x;
     }
