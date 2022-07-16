@@ -73,7 +73,7 @@ int Array::get(int index)
 {
     //Validity
     if(index >= 0 && index < length)
-        return arr.A[index];
+        return A[index];
     return -1;
 }
 
@@ -269,7 +269,7 @@ int main()
         break;
          case 2: std::cout<<"Enter index ";
             std:: cin>>index;
-            x=arr1->delete(index);
+            x=arr1->deleteElement(index);
             std::cout<<"Deleted Element is"<< x;
          break;
         case 3: std::cout<<"Enter element to search: ";
