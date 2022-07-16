@@ -38,10 +38,10 @@ public:
     int isSorted();
     void reverse2();
     void insertionSortedArray( int data);
-    Array* mergeArray(Array arr2);
     int deleteElement(int index);
     int linearSearch(int key);
     int binarySearch(int key);
+     Array* mergeArray(Array arr2);
 };
 
 void Array::swap(int *a, int*b){
