@@ -7,12 +7,12 @@ class FlattenArray {
     int currIndex = 0;
     std::vector<std::vector<int>::iterator>StartIndex;
     std::vector<std::vector<int>::iterator>EndIndex;
-    void StoreFlattenArray(vector<vector<int> > &arr);
+    void StoreFlattenArray(std::vector<std::vector<int> >& arr);
     bool hasDepth();
     int nextValue();
-}
+};
 
-void FlattenArray::StoreFlattenArray(std::vector<std::vector<int> > &arr)
+void FlattenArray::StoreFlattenArray(std::vector<std::vector<int> >& arr)
 {
     size = arr.size();
     StartIndex.resize(size);
@@ -45,12 +45,12 @@ int FlattenArray::nextValue(){
 
 int main()
 {
-    std::vector<std::vector<int> > arr{ { 1, 2 },
+    std::vector<std::vector<int> >arr { { 1, 2 },
            { 3 },
            { 4, 5, 6 },
            { 7, 8, 9, 10 } };
 
-    FlattenArray iter(arr);
+    FlattenArray iter(&arr);
   
     while (iter.hasDepth())
        std::cout << iter.nextValue() << " ";
